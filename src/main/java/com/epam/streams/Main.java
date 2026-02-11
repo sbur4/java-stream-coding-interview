@@ -20,7 +20,9 @@ public class Main {
 //        task7();
 //        task8();
 //        task9();
-        task10();
+//        task10();
+        task11();
+//        task12();
     }
 
     private static void task1() {
@@ -139,8 +141,8 @@ public class Main {
                 "banana", "apple");
 
         // A:
-        Map<String, Long> wordFrequency  = words.stream()
-                        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<String, Long> wordFrequency = words.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
         System.out.println(wordFrequency);
     }
@@ -169,5 +171,18 @@ public class Main {
             }
         }
         return true;
+    }
+
+    private static void task11() {
+        List<Order> orders = Arrays.asList(
+                new Order(Stream.of("a", "b", "c").toList()),
+                new Order(Stream.of("d", "e", "f").toList()),
+                new Order(Stream.of("j", "h", "k").toList()));
+
+        List<String> result = orders.stream()
+                .flatMap(o -> o.getOrders().stream())
+                .collect(Collectors.toList());
+
+        System.out.println(result);
     }
 }
